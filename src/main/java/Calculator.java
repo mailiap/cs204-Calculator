@@ -1,4 +1,4 @@
-
+// This is a test comment for the GitHub Actions workflow
 class Calculator {
 
     Calculator(){
