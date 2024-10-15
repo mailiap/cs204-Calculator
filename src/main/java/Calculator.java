@@ -1,5 +1,8 @@
 // This is a test comment for the GitHub Actions workflow
+import java.util.Random;
+
 class Calculator {
+    private static final Random random = new Random();
 
     Calculator(){
 
@@ -37,9 +40,13 @@ class Calculator {
     .
     etc
      */
-    int fibonacciNumberFinder(int n){
-        return 0;
+    int fibonacciNumberFinder(int n) {
+        if (n <= 1) {
+            return n;
+        }
+        return fibonacciNumberFinder(n - 1) + fibonacciNumberFinder(n - 2);
     }
+
 
 
     /*
@@ -49,9 +56,21 @@ class Calculator {
     if int a = 10 then this method returns: 1010
     if int a = 16 then this method returns: 10000
      */
-    String intToBinaryNumber(int number){
-        return null;
+    String intToBinaryNumber(int number) {
+        if (number == 0) {
+            return "0";
+        }
+
+        StringBuilder binary = new StringBuilder();
+
+        while (number > 0) {
+            binary.insert(0, number % 2);
+            number = number / 2;
+        }
+
+        return binary.toString();
     }
+
 
     /*
     Create a completely unique String identifier for a given string
@@ -61,8 +80,22 @@ class Calculator {
 
     if you run this function twice with the same String input, it must return 2 unique String IDs
      */
-    String createUniqueID(String n){
-        return null;
+    String createUniqueID(String n) {
+        String randomString = generateRandomString(8);
+
+        long timestamp = System.currentTimeMillis();
+
+        return n + randomString + timestamp;
+    }
+
+    private String generateRandomString(int length) {
+        String characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        StringBuilder sb = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            int index = random.nextInt(characters.length());
+            sb.append(characters.charAt(index));
+        }
+        return sb.toString();
     }
 
 
